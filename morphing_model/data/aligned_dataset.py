@@ -1,6 +1,7 @@
 import os
 from data.base_dataset import BaseDataset, get_transform
 from PIL import Image
+import torch
 
 
 class AlignedDataset(BaseDataset):
