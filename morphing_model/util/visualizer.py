@@ -4,9 +4,8 @@ import ntpath
 import time
 from . import util
 from . import html
-from scipy.misc import imresize
+from PIL import Image
 import re
-
 
 # save image to the disk
 def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256):
@@ -18,16 +17,15 @@ def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256):
 
     for label, image in list(visuals.items()):
         im_data = image[0]
-
         im = util.tensor2im(im_data)
         image_name = '%s_%s.png' % (name, label)
         save_path = os.path.join(image_dir, image_name)
 
         h, w, _ = im.shape
         if aspect_ratio > 1.0:
-            im = imresize(im, (h, int(w * aspect_ratio)), interp='bicubic')
+            im = np.array(Image.fromarray(im).resize((int(w * aspect_ratio), h), Image.BICUBIC))
         if aspect_ratio < 1.0:
-            im = imresize(im, (int(h / aspect_ratio), w), interp='bicubic')
+            im = np.array(Image.fromarray(im).resize((w, int(h / aspect_ratio)), Image.BICUBIC))
         util.save_image(im, save_path)
 
         ims.append(image_name)
@@ -70,7 +68,7 @@ class Visualizer():
 
     # |visuals|: dictionary of images to display or save
     def display_current_results(self, visuals, epoch, itnum, save_result):
-        if self.display_id > 0:  # show images in the browser
+        if self.display_id > 0:
             ncols = self.ncols
             if ncols > 0:
                 ncols = min(ncols, len(visuals))
@@ -107,7 +105,6 @@ class Visualizer():
                     idx += 1
                 if label_html_row != '':
                     label_html += '<tr>%s</tr>' % label_html_row
-                # pane col = image row
                 try:
                     self.vis.images(images, nrow=ncols, win=self.display_id + 1,
                                     padding=2, opts=dict(title=title + ' images'))
@@ -125,7 +122,7 @@ class Visualizer():
                                    win=self.display_id + idx)
                     idx += 1
 
-        if self.use_html and (save_result or not self.saved):  # save images to a html file
+        if self.use_html and (save_result or not self.saved):
             self.saved = True
             
             if self.curr_epoch < epoch:
@@ -144,10 +141,8 @@ class Visualizer():
                 tm = image[1]
                 img_path = os.path.join(self.img_dir_epoch, 'epoch%.3d_%.4d_%s_%.3f.png' % (epoch, itnum, label, tm))
                 util.save_image(image_numpy, img_path)
-            # update website
             self.webpage.add_header('epoch [%d], iter [%d]' % (epoch, itnum))
             ims, txts, links = [], [], []
-
             for label, image_numpy in visuals.items():
                 tm = image_numpy[1]
                 fname = image_numpy[2]
@@ -159,9 +154,7 @@ class Visualizer():
                 links.append(img_path)
             self.webpage.add_images(epoch, ims, txts, links, width=self.win_size)
             self.webpage.save_epoch(epoch)
-            
 
-    # losses: dictionary of error labels and values
     def plot_current_losses(self, epoch, counter_ratio, opt, losses):
         if not hasattr(self, 'plot_data'):
             self.plot_data = {'X': [], 'Y': [], 'legend': list(losses.keys())}
@@ -180,7 +173,6 @@ class Visualizer():
         except ConnectionError:
             self.throw_visdom_connection_error()
 
-    # losses: same format as |losses| of plot_current_losses
     def print_current_losses(self, epoch, i, losses, t, t_data):
         message = '(epoch: %d, iters: %d, time: %.3f, data: %.3f) ' % (epoch, i, t, t_data)
         for k, v in losses.items():
