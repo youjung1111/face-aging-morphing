@@ -36,7 +36,7 @@ def get_option_setter(dataset_name):
 
 def create_dataset(opt):
     dataset = find_dataset_using_name(opt.dataset_mode)
-    instance = dataset()
+    instance = dataset(opt)
     instance.initialize(opt)
     print("dataset [%s] was created" % (instance.name()))
     return instance
