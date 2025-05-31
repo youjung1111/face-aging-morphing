@@ -23,6 +23,8 @@ class AlignedDataset(BaseDataset):
     
         # MorphGAN 모델은 'reals'라는 키로 받아서 씀!
         return {
+            'A': A,
+            'B': B,
             'reals': torch.stack([A, B], dim=0),  # [2, C, H, W] 형태로 합침
             'A_paths': A_path,
             'B_paths': B_path
