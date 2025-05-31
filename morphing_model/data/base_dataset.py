@@ -4,8 +4,10 @@ import torchvision.transforms as transforms
 
 
 class BaseDataset(data.Dataset):
-    def __init__(self):
+    def __init__(self, opt):
         super(BaseDataset, self).__init__()
+        self.opt = opt  # ← 이 줄을 꼭 추가해야 함!
+
 
     def name(self):
         return 'BaseDataset'
