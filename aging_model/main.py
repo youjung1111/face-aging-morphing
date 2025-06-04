@@ -17,11 +17,11 @@ def main():
     model = AgingGAN(config)
     trainer = Trainer(
         max_epochs=config['epochs'],
-        accelerator='gpu',
-        devices=1,
+        accelerator=config['accelerator'],
+        devices=config['devices'],
         auto_scale_batch_size='binsearch'
     )
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
     main()
