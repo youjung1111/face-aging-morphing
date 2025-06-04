@@ -1,6 +1,6 @@
 # Data configs
-domainA_dir: '/home/hasnain/Datasets/processedCACDDomains/trainA'
-domainB_dir: '/home/hasnain/Datasets/processedCACDDomains/trainB'
+domainA_dir: '/content/drive/MyDrive/aging_model_dataset/0-10'
+domainB_dir: '/content/drive/MyDrive/aging_model_dataset/40-50'
 
 # Network Configs
 ngf: 32
