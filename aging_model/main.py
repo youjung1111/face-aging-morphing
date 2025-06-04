@@ -19,7 +19,6 @@ def main():
         max_epochs=config['epochs'],
         accelerator=config['accelerator'],
         devices=config['devices'],
-        auto_scale_batch_size='binsearch'
     )
 
 
