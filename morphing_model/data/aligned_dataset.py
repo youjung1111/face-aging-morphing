@@ -12,6 +12,10 @@ class AlignedDataset(BaseDataset):
         self.B_paths = sorted([os.path.join(self.dir, f) for f in os.listdir(self.dir) if '_B.' in f])
         self.transform = get_transform(opt)
 
+    def name(self):
+        return 'AlignedDataset'
+
+
     def __getitem__(self, index):
         A_path = self.A_paths[index]
         B_path = self.B_paths[index]
