@@ -8,8 +8,11 @@ from util import html
 import copy
 
 
+
+
 if __name__ == '__main__':
     opt = TestOptions().parse()
+    print(">>>>> DEBUG: opt.name =", opt.name)
     opt.nThreads = 1   # test code only supports nThreads = 1
     opt.batchSize = 1  # test code only supports batchSize = 1
     #opt.serial_batches = True  # no shuffle
