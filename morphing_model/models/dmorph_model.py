@@ -273,28 +273,7 @@ class DmorphModel(BaseModel):
 			loss_theta4 = self.criterionMSE(self.itheta, ident)
 			wt_ident = 1
 			wt_perc = 0.5
-			loss_theta = wt_perc * loss_theta + wt_ident * loss_theta2 + wt_perc * loss_theta3 + wt_ident * loss_theta4
-			wt = 1
-			self.loss_T = wt * loss_theta
-			tot += self.loss_T
-
-
-		# Reconstruction loss:
-		
-		if self.do_recon:
-			loss_A = self.criterionL1(self.intrs[0:self.bsz], self.A)
-			loss_B = self.criterionL1(self.intrs[-self.bsz:], self.B)
-			self.loss_R = self.w_r * (loss_A + loss_B) * 0.5
-			tot += self.loss_R
-
-		loss_P1 = 0
-		loss_P2 = 0
-		if self.do_adjp:
-			loss_P1 = self.data_adj_loss()
-		if self.do_endpp:
-			loss_P2 = self.data_endp_loss()
-		
-		p1w = 1
+			loss_theta = wt_perc * loss_theta + wt_ident * loss_theta2 + wt_perc정
 		p2w = 1
 		self.loss_P = p1w * loss_P1 + p2w * loss_P2
 		self.loss_P = self.w_p * self.loss_P
