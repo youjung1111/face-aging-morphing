@@ -20,7 +20,7 @@ def main():
         accelerator=config['accelerator'],
         devices=config['devices'],
     )
-
+    trainer.fit(model)
 
 if __name__ == '__main__': 
     main()
