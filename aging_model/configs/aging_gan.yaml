@@ -22,5 +22,5 @@ batch_size: 4
 num_workers: 2
 epochs: 100
 augment_rotation: 20
-accelerator: gpu
+accelerator: 'gpu'
 devices: 1
