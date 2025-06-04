@@ -24,3 +24,4 @@ epochs: 100
 augment_rotation: 20
 accelerator: 'gpu'
 devices: 1
+checkpoint_dir: /content/drive/MyDrive/checkpoints
