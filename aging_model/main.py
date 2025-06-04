@@ -17,8 +17,8 @@ def main():
     model = AgingGAN(config)
     trainer = Trainer(
         max_epochs=config['epochs'],
-        accelerator=config['accelerator'],
-        devices=config['devices'],
+        accelerator='gpu',
+        devices=1,
         auto_scale_batch_size='binsearch'
     )
 
