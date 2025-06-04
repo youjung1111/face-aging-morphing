@@ -15,7 +15,12 @@ def main():
         config = yaml.load(file, Loader=yaml.FullLoader)
     print(config)
     model = AgingGAN(config)
-    trainer = Trainer(max_epochs=config['epochs'], gpus=config['gpus'], auto_scale_batch_size='binsearch')
+    trainer = Trainer(
+        max_epochs=config['epochs'],
+        accelerator='gpu',
+        devices=config['gpus'], 
+        auto_scale_batch_size='binsearch'
+    )
     trainer.fit(model)
 
 
