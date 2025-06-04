@@ -33,9 +33,7 @@ while getopts 'n:d:i:gcs:latz:v:q' flag; do
   esac
 done
 
-
-args="test.py --dataroot $dataset --name $name --save_dir $dir --checkpoints_dir /content/drive/MyDrive/MorphGAN/checkpoints_backup --fineSize $fine_size --nintrm $intrm_num --batchSize $batchsize --dataset_mode aligned --phase test"
-
+args="test.py --dataroot $dataset --name $name --save_dir $dir --checkpoints_dir /content/drive/MyDrive/MorphGAN/checkpoints_backup --model dmorph --fineSize $fine_size --nintrm $intrm_num --batchSize $batchsize --dataset_mode aligned --phase test"
 
 
 if [ $c_flag == 'true' ]
