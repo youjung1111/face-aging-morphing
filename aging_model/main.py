@@ -17,11 +17,10 @@ def main():
     model = AgingGAN(config)
     trainer = Trainer(
         max_epochs=config['epochs'],
-        accelerator='gpu',
-        devices=config['gpus'], 
+        accelerator=config['accelerator'],
+        devices=config['devices'],
         auto_scale_batch_size='binsearch'
     )
-    trainer.fit(model)
 
 
 if __name__ == '__main__':
