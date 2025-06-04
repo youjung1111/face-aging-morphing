@@ -35,7 +35,7 @@ done
 
 
 
-args="test.py --dataroot $dataset --name $name --save_dir $dir --fineSize $fine_size --nintrm $intrm_num --batchSize $batchsize"
+args="test.py --dataroot $dataset --name $name --save_dir $dir --fineSize $fine_size --nintrm $intrm_num --batchSize $batchsize --dataset_mode aligned --phase test"
 
 
 if [ $c_flag == 'true' ]
