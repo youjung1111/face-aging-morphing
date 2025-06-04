@@ -6,7 +6,7 @@ This is a PyTorch implementation of our paper "Image Morphing with Perceptual Co
 
 #dataset
 
-남남/여여/남녀로 학습을 시킬것이다. 여여(morph.ff)=46쌍(92명) /남남(morph.mm)=56쌍(112명)/남녀(morph.mf)=93명(186명)
+남남/여여/남녀로 학습을 시킬것이다. 여여(morph.ff)=46쌍(92명) /남남(morph.mm)=56쌍(112명)/남녀(morph.mf)=93쌍(186명)
 
 ### Abstract
 
