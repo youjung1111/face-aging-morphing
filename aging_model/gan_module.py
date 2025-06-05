@@ -13,6 +13,13 @@ from models import Generator, Discriminator
 
 class AgingGAN(pl.LightningModule):
 
+    def validation_step(self, batch, batch_idx):
+        real_A, real_B = batch
+        fake_B = self.genA2B(real_A)
+        val_loss = F.l1_loss(fake_B, real_B)
+        self.log('val_loss', val_loss, prog_bar=True)
+        return val_loss
+
     def __init__(self, hparams):
         super(AgingGAN, self).__init__()
         self.save_hyperparameters(hparams)
@@ -157,10 +164,23 @@ class AgingGAN(pl.LightningModule):
                           num_workers=self.hparams['num_workers'],
                           shuffle=True)
         
-    def validation_step(self, batch, batch_idx):
-        real_A, real_B = batch
-        fake_B = self.genA2B(real_A)
-        val_loss = F.l1_loss(fake_B, real_B)
-        self.log('val_loss', val_loss, prog_bar=True)
-        return val_loss
+    def val_dataloader(self):
+        val_transform = transforms.Compose([
+            transforms.ToPILImage(),
+            transforms.Resize((self.hparams['img_size'], self.hparams['img_size'])),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))
+        ])
+        dataset = ImagetoImageDataset(
+            self.hparams['domainA_dir'],  
+            self.hparams['domainB_dir'],
+            val_transform
+        )
+        return DataLoader(
+            dataset,
+            batch_size=self.hparams['batch_size'],
+            num_workers=self.hparams['num_workers'],
+            shuffle=False 
+        )
+
 
