@@ -156,3 +156,11 @@ class AgingGAN(pl.LightningModule):
                           batch_size=self.hparams['batch_size'],
                           num_workers=self.hparams['num_workers'],
                           shuffle=True)
+        
+    def validation_step(self, batch, batch_idx):
+        real_A, real_B = batch
+        fake_B = self.genA2B(real_A)
+        val_loss = F.l1_loss(fake_B, real_B)
+        self.log('val_loss', val_loss, prog_bar=True)
+        return val_loss
+
