@@ -29,8 +29,12 @@ class ImagetoImageDataset(Dataset):
         if idx_b >= self.lenB:
             idx_b = np.random.randint(self.lenB)
         
-        imageA = np.array(Image.open(self.imagesA[idx_a]).convert("RGB"))
-        imageB = np.array(Image.open(self.imagesB[idx_b]).convert("RGB"))
+        try:
+            imageA = np.array(Image.open(self.imagesA[idx_a]).convert("RGB"))
+            imageB = np.array(Image.open(self.imagesB[idx_b]).convert("RGB"))
+        except Exception as e:
+            print(f"이미지 로딩 실패: {self.imagesA[idx_a]} 또는 {self.imagesB[idx_b]}")
+            raise e
 
         if self.transforms is not None:
             imageA = self.transforms(imageA)
