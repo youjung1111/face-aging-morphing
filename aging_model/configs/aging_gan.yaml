@@ -20,7 +20,7 @@ weight_decay: 0.0001
 img_size: 256
 batch_size: 4
 num_workers: 2
-epochs: 100
+epochs: 1
 augment_rotation: 20
 accelerator: 'gpu'
 devices: 1
