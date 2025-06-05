@@ -31,6 +31,8 @@ def main():
         accelerator=config['accelerator'],
         devices=config['devices'],
         callbacks=[checkpoint_callback]
+        val_check_interval=1.0,
+        limit_val_batches=1.0,
     )
     trainer.fit(model)
 
