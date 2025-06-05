@@ -20,6 +20,9 @@ class AgingGAN(pl.LightningModule):
         self.log('val_loss', val_loss, prog_bar=True)
         return val_loss
 
+    def on_validation_epoch_end(self):
+        print("validation 루프 실행됨")
+
     def __init__(self, hparams):
         super(AgingGAN, self).__init__()
         self.save_hyperparameters(hparams)
@@ -176,11 +179,13 @@ class AgingGAN(pl.LightningModule):
             self.hparams['domainB_dir'],
             val_transform
         )
+        print("val dataset size:", len(dataset))
         return DataLoader(
             dataset,
             batch_size=self.hparams['batch_size'],
             num_workers=self.hparams['num_workers'],
             shuffle=False 
         )
+        
 
 
