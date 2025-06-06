@@ -6,7 +6,7 @@ This is a PyTorch implementation of our paper "Image Morphing with Perceptual Co
 
 #dataset
 
-남남/여여/남녀로 학습을 시킬것이다. 여여(morph.ff)=46쌍(92명) /남남(morph.mm)=56쌍(112명)/남녀(morph.mf)=93쌍(186명) ->추가:250쌍의 공용데이터셋을 이용하여 추가 학습(morph.mf_opensource)->(수정): 세가지 경우로 나누어 학습을 시켜 test해본 결과, landmark기반도 아니고 남녀 골격의 차이를 학습시키는 모델은 아니라고 판단하여, 남녀 랜덤하게 쌍을 맺어 총 500쌍으로 재학습함.
+남남/여여/남녀로 학습을 시킬것이다. 여여(morph.ff)=46쌍(92명) /남남(morph.mm)=56쌍(112명)/남녀(morph.mf)=93쌍(186명)의 데이터를 40_50대로 수집하여 짝을 지어 학습->test결과 부족하다 판단 후 추가:250쌍의 오픈데이터셋을 이용하여 추가 학습(morph.mf_opensource)->(수정): 세가지 경우로 나누어 학습을 시켜 test해본 결과, landmark기반도 아니고 남녀 골격의 차이를 학습시키는 모델은 아니기에 세개로 나누어 학습하는 것이 무의미하고 판단하여, 남녀 랜덤하게 쌍을 맺어 총 500쌍으로 재학습함.
 
 ### Abstract
 
