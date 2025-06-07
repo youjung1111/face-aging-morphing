@@ -5,8 +5,23 @@
 This is a PyTorch implementation of our paper "Image Morphing with Perceptual Constraints and STN Alignment", CGF 2020.
 
 #dataset
+2025.05.31
+남남/여여/남녀로 학습을 시킬것이다. 여여(morph.ff)=46쌍(92명) /남남(morph.mm)=56쌍(112명)/남녀(morph.mf)=93쌍(186명)의 데이터를 40_50대로 수집하여 짝을 지어 학습->test결과 부족하다 판단 후 추가:250쌍의 오픈데이터셋을 이용하여 추가 학습(morph.mf_opensource)->06.06 (수정): 세가지 경우로 나누어 학습을 시켜 test해본 결과, landmark기반도 아니고 남녀 골격의 차이를 학습시키는 모델은 아니기에 세개로 나누어 학습하는 것이 무의미하고 판단하여, 남녀 랜덤하게 쌍을 맺어 총 500쌍으로 재학습함.
 
-남남/여여/남녀로 학습을 시킬것이다. 여여(morph.ff)=46쌍(92명) /남남(morph.mm)=56쌍(112명)/남녀(morph.mf)=93쌍(186명)의 데이터를 40_50대로 수집하여 짝을 지어 학습->test결과 부족하다 판단 후 추가:250쌍의 오픈데이터셋을 이용하여 추가 학습(morph.mf_opensource)->(수정): 세가지 경우로 나누어 학습을 시켜 test해본 결과, landmark기반도 아니고 남녀 골격의 차이를 학습시키는 모델은 아니기에 세개로 나누어 학습하는 것이 무의미하고 판단하여, 남녀 랜덤하게 쌍을 맺어 총 500쌍으로 재학습함.
+#학습 돌린 코랩 링크
+
+https://colab.research.google.com/drive/1NHn_-tFSxpgbkgAAkSMOqHt7sZiHtjcz?usp=drive_link
+
+#학습에 이용한 데이터셋 드라이브
+https://drive.google.com/drive/folders/1sVXkj8qUtxr6JKkQ3hhO9VUscI-sOf0w?usp=sharing
+
+06.08
+-checkpoints/last_fianl_morph <-최종학습 체크포인트
+-datasets/last_data <-최종 데이터셋으로 사용 (우리가 수집한 데이터 200+ 공개데이터 500)
+-datasets/morph_test <-모뎅 간단 test할 때 사용
+-datasets/resuits <-위의 test결과물 저장 (위 두개는 무시해도 됩니다!)
+
+
 
 ### Abstract
 
