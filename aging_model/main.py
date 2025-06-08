@@ -24,21 +24,12 @@ def main():
         dirpath="/content/drive/MyDrive/checkpoints",
         filename='best-model',
     )
-
-    epoch_checkpoint = ModelCheckpoint( #매 에폭마다 저장
-        save_top_k=-1,
-        monitor="val_loss",
-        every_n_epochs=1,
-        dirpath="/content/drive/MyDrive/checkpoints",
-        filename="epoch={epoch:02d}-val_loss={val_loss:.2f}",
-    )
-    
     
     trainer = Trainer(
         max_epochs=config['epochs'],
         accelerator=config['accelerator'],
         devices=config['devices'],
-        callbacks=[best_checkpoint, epoch_checkpoint],
+        callbacks=[best_checkpoint],
         val_check_interval=1.0,
         limit_val_batches=1.0
     )
