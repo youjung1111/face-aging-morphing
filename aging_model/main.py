@@ -17,14 +17,22 @@ def main():
     print(config)
     model = AgingGAN(config)
 
-    checkpoint_callback = ModelCheckpoint(
+    best_checkpoint = ModelCheckpoint(
         save_top_k=1,
         monitor="val_loss", 
         mode="min",
-        every_n_epochs=1,
         dirpath="/content/drive/MyDrive/checkpoints",
         filename='best-model',
     )
+
+    epoch_checkpoint = ModelCheckpoint(
+        save_top_k=-1,
+        monitor="val_loss",
+        every_n_epochs=1,
+        dirpath="/content/drive/MyDrive/checkpoints",
+        filename="epoch={epoch:02d}-val_loss={val_loss:.2f}",
+    )
+    
     
     trainer = Trainer(
         max_epochs=config['epochs'],
