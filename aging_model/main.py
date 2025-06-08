@@ -17,7 +17,7 @@ def main():
     print(config)
     model = AgingGAN(config)
 
-    best_checkpoint = ModelCheckpoint(
+    best_checkpoint = ModelCheckpoint( #best 모델 저
         save_top_k=1,
         monitor="val_loss", 
         mode="min",
@@ -25,7 +25,7 @@ def main():
         filename='best-model',
     )
 
-    epoch_checkpoint = ModelCheckpoint(
+    epoch_checkpoint = ModelCheckpoint( #매 에폭마다 저장
         save_top_k=-1,
         monitor="val_loss",
         every_n_epochs=1,
@@ -38,7 +38,7 @@ def main():
         max_epochs=config['epochs'],
         accelerator=config['accelerator'],
         devices=config['devices'],
-        callbacks=[checkpoint_callback],
+        callbacks=[best_checkpoint, epoch_checkpoint],
         val_check_interval=1.0,
         limit_val_batches=1.0
     )
