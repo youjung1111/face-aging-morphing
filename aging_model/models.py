@@ -64,7 +64,7 @@ class Generator(nn.Module):
     def forward(self, x, age):
         if age.dim() == 2:
             age = age.view(age.size(0), 1, 1, 1)
-        age_map = age.expend(-1, 1, x.size(2), x.size(3))
+        age_map = age.expand(-1, 1, x.size(2), x.size(3))
         x = torch.cat([x, age_map], dim=1)
         return self.model(x)
 
