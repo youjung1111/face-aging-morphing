@@ -17,8 +17,9 @@ class AgingGAN(pl.LightningModule):
         real_A, real_B = batch
         fake_B = self.genA2B(real_A)
         val_loss = F.l1_loss(fake_B, real_B)
-        self.log('val_loss', val_loss, prog_bar=True)
+        self.log('val_loss', val_loss, prog_bar=True, on_step=False, on_epoch=True)
         return val_loss
+
 
     def on_validation_epoch_end(self):
         print("validation 루프 실행됨")
