@@ -23,10 +23,11 @@ class ResidualBlock(nn.Module):
 class Generator(nn.Module):
     def __init__(self, ngf, n_residual_blocks=9):
         super(Generator, self).__init__()
+        input_channels = 4
 
         # Initial convolution block
         model = [nn.ReflectionPad2d(3),
-                 nn.Conv2d(3, ngf, 7),
+                 nn.Conv2d(input_channels, ngf, 7),
                  nn.BatchNorm2d(ngf),
                  nn.ReLU()]
 
@@ -60,7 +61,11 @@ class Generator(nn.Module):
 
         self.model = nn.Sequential(*model)
 
-    def forward(self, x):
+    def forward(self, x, age):
+        if age.dim() == 2:
+            age = age.view(age.size(0), 1, 1, 1)
+        age_map = age.expend(-1, 1, x.size(2), x.size(3))
+        x = torch.cat([x, age_map], dim=1)
         return self.model(x)
 
 
