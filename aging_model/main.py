@@ -18,12 +18,12 @@ def main():
     model = AgingGAN(config)
 
     checkpoint_callback = ModelCheckpoint(
-        dirpath=config.get('checkpoint_dir', '/content/drive/MyDrive/checkpoints'),
-        filename='best-model',
         save_top_k=1,
-        monitor='val_loss',  # val_loss가 작을수록 좋은 모델로 간주
-        mode='min',
-        save_weights_only=False
+        monitor="val_loss", 
+        mode="min",
+        every_n_epochs=1,
+        dirpath="/content/drive/MyDrive/checkpoints",
+        filename='best-model',
     )
     
     trainer = Trainer(
