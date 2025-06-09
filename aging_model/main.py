@@ -15,7 +15,12 @@ def main():
     with open(args.config) as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
     print(config)
-    model = AgingGAN(config)
+
+    if 'ckpt_path' in config and config['ckpt_path']:
+        print(f"Loading from checkpoint: {config['ckpt_path']}")
+        model = AgingGAN.load_from_checkpoint(config['ckpt_path'], config=config)
+    else:
+        model = AgingGAN(config)
 
     best_checkpoint = ModelCheckpoint( #best 모델 저
         save_top_k=1,
