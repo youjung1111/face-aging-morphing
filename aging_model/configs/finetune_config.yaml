@@ -1,0 +1,29 @@
+# Data configs
+domainA_dir: '/content/drive/MyDrive/aging_model_dataset_new/young'
+domainB_dir: '/content/drive/MyDrive/aging_model_dataset_new/old'
+
+# Network Configs
+ngf: 32
+ndf: 32
+n_blocks: 6
+
+# Loss configs
+adv_weight: 2
+cycle_weight: 10
+identity_weight: 5
+
+# Optimizer configs
+lr: 0.00001
+weight_decay: 0.0001
+
+# Training configs
+img_size: 256
+batch_size: 4
+num_workers: 2
+epochs: 20
+augment_rotation: 20
+accelerator: 'gpu'
+devices: 1
+
+# Checkpoint 저장 경로
+checkpoint_dir: '/content/drive/MyDrive/checkpoints_finetune'
