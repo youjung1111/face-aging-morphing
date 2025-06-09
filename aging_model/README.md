@@ -1,3 +1,17 @@
+#학습 배경
+fast-AgingGAN 모델을 활용하여 domainA (0-20대 얼굴) 약 800장 domainB (40–50대 얼굴) 약 800장으로 학습을 진행함. 학습 목적은 젊은 얼굴을 노화시키는 방향이다.
+
+#학습 결과 test 결과 어린 아이의 얼굴이 어른 얼굴로 노화되는 변화가 미미함 이 부분에 한계가 있다고 생각하여 0-20대 얼굴 약 800장, 40-50대 얼굴 약 800장을 기존 체크포인트를 기반으로 파인튜닝을 진행함.
+
+#향후 고려할 부분
+어린이 데이터 비율을 더 높여서 학습시키거나 입력에 나이 조건을 추가해 얼굴 변화 퀄리티를 높이는 것
+
+#관련 링크
+1차 학습 dataset 구글 드라이브 링크: https://drive.google.com/drive/folders/1z80F5t07LMHBiVkmxcicaK3b5YFTH5YT?usp=sharing
+2차 학습 dataset 구글 드라이브 링크: https://drive.google.com/drive/folders/13rTb38RJ49Cdh6qM2QtjB82OxpjHNHkA?usp=sharing
+1차 학습 체크포인트 링크: https://drive.google.com/drive/folders/19JuMV51l5Hks8OrKG13FMKC2Q04C4AT5?usp=sharing [best-model.ckpt]
+2차 학습 체크포인트 링크: https://drive.google.com/drive/folders/19JuMV51l5Hks8OrKG13FMKC2Q04C4AT5?usp=sharing [best-model2.ckpt (프로그램 제작 시 이 체크포인트 사용)]
+
 # Fast-AgingGAN
 This repository holds code for a face aging deep learning model. It is based on the CycleGAN, where we translate young faces to old and vice versa.
 
