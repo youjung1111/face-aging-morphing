@@ -27,3 +27,4 @@ devices: 1
 
 # Checkpoint 저장 경로
 checkpoint_dir: '/content/drive/MyDrive/checkpoints_finetune'
+ckpt_path: '/content/drive/MyDrive/checkpoints/best-model.ckpt'
