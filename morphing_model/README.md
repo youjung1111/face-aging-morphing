@@ -21,6 +21,15 @@ https://drive.google.com/drive/folders/1sVXkj8qUtxr6JKkQ3hhO9VUscI-sOf0w?usp=sha
 -datasets/morph_test <-모뎅 간단 test할 때 사용
 -datasets/resuits <-위의 test결과물 저장 (위 두개는 무시해도 됩니다!)
 
+#공개데이터셋 출처
+https://www.kaggle.com/datasets/lyk1652/afad-full?resource=download (동아시아인 남녀 250쌍)
+
+#학습 결과 그래프
+
+![스크린샷 2025-06-20 132820](https://github.com/user-attachments/assets/5ccabb31-0b55-402e-9272-2de5160a8481)
+
+
+
 
 
 ### Abstract
